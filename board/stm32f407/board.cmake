@@ -1,5 +1,6 @@
 # GCC
 set(CMAKE_C_COMPILER arm-none-eabi-gcc)
+set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
 set(CMAKE_OBJCOPY arm-none-eabi-objcopy)
 set(CMAKE_SIZE arm-none-eabi-size)
 
@@ -17,6 +18,9 @@ set(CMAKE_EXE_LINKER_FLAGS
 "--specs=nano.specs -specs=nosys.specs -T${LINKER_SCRIPT} -Wl,-Map=${PROJECT_SOURCE_DIR}/build/${PROJECT_NAME}.map,--cref -Wl,--gc-sections,--no-warn-rwx-segments"
 )
 
+# OS CHIP
+set(ARCH arm)
+set(ARCH_TYPE cortex-m4)
 # CHIP
 set(CHIP stm32)
 # STM32 CHIP TYPE
