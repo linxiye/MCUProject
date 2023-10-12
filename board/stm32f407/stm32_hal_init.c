@@ -67,5 +67,5 @@ void Error_Handler(void)
 void stm32_hal_init(void)
 {
     HAL_Init();
-    SystemClock_Config();
+    // SystemClock_Config();
 }

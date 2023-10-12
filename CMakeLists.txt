@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 
+project(out)
 
-project (out)
+set(ENV{PROJECT} ${PROJECT_NAME})
+message(STATUS "PROJECT=$ENV{PROJECT}")
 
 set(BOARD $ENV{BOARD})
 message(STATUS "BOARD=${BOARD}")
@@ -19,6 +21,12 @@ add_custom_target(
   USES_TERMINAL
 )
 
+add_custom_target( 
+    download
+    openocd -f ../board/${BOARD}/openocd.cfg -c init -c halt -c "flash write_image erase ../build/${PROJECT_NAME}.bin ${OPENOCD_FLASH_START}" -c reset -c shutdown
+    USES_TERMINAL
+)
+
 include_directories(
     ./board/${BOARD}
 )
@@ -33,8 +41,10 @@ add_executable(${PROJECT_NAME}.elf
 )
 
 target_link_libraries(${PROJECT_NAME}.elf
-    board
-    app
+    -Wl,--whole-archive 
+    board 
+    app 
+    -Wl,--no-whole-archive
 )
 
 set(ELF_FILE ${PROJECT_SOURCE_DIR}/build/${PROJECT_NAME}.elf)

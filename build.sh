@@ -10,10 +10,12 @@ function running {
 
     . ./board/$BOARD/export.sh
 
-    cd build
-    cmake ..
-    make
-    cd ../
+    function cmakebuild {
+        cd build
+        cmake ..
+        cd ../
+    }
+    export -f cmakebuild
 
     function menuconfig {
         cd build
@@ -36,6 +38,12 @@ function running {
     }
     export -f build
 
+    function download {
+        cd build
+        make download
+        cd ../
+    }
+    export -f download
 }
 
 

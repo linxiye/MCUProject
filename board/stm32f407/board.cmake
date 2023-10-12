@@ -21,6 +21,8 @@ set(CMAKE_EXE_LINKER_FLAGS
 # OS CHIP
 set(ARCH arm)
 set(ARCH_TYPE cortex-m4)
+# openocd
+set(OPENOCD_FLASH_START 0x08000000)
 # CHIP
 set(CHIP stm32)
 # STM32 CHIP TYPE

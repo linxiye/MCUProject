@@ -1,6 +1,8 @@
 
+aux_source_directory(./ BOARD_SRC)
+
 add_library(board
-    ./stm32_hal_init.c
+    ${BOARD_SRC}
 )
 
 target_link_libraries(board
