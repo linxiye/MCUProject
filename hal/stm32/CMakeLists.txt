@@ -12,18 +12,10 @@ include_directories(
     ./${CHIP_TYPE}/Inc
 )
 
-add_subdirectory(${CHIP_TYPE})
 
-set_property(SOURCE ./CMSIS/${CHIP_TYPE}/Source/Templates/gcc/startup_${chip_hal_type}.s PROPERTY LANGUAGE C)
+aux_source_directory(./${CHIP_TYPE}/Src/ HAL_SRC)
+add_library (hal ${HAL_SRC})
 
-add_library(hal
-    ./CMSIS/${CHIP_TYPE}/Source/Templates/system_${chip_type}.c
-    ./CMSIS/${CHIP_TYPE}/Source/Templates/gcc/startup_${chip_hal_type}.s
-)
-
-target_link_libraries(hal
-    stm32hal
-)
 
 target_include_directories(hal PUBLIC 
     ./CMSIS/Include

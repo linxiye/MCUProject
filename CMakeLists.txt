@@ -34,7 +34,7 @@ include_directories(
 add_subdirectory(board)
 add_subdirectory(App)
 add_subdirectory(hal)
-# add_subdirectory(lichee)
+add_subdirectory(lichee)
 
 add_executable(${PROJECT_NAME}.elf 
     ${PROJECT_SOURCE_DIR}/board/regio.c
@@ -44,6 +44,7 @@ target_link_libraries(${PROJECT_NAME}.elf
     -Wl,--whole-archive 
     board 
     app 
+    rtthread
     -Wl,--no-whole-archive
 )
 

@@ -63,6 +63,8 @@ RT_WEAK void *rt_heap_end_get(void)
  */
 void rt_hw_board_init()
 {
+    stm32_hal_init();
+    
     /* System Clock Update */
     SystemCoreClockUpdate();
     
@@ -83,7 +85,8 @@ void SysTick_Handler(void)
 {
     /* enter interrupt */
     rt_interrupt_enter();
-
+    
+    HAL_IncTick();
     rt_tick_increase();
 
     /* leave interrupt */

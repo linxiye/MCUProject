@@ -7,7 +7,7 @@ set(CMAKE_SIZE arm-none-eabi-size)
 # build
 set(CMAKE_BUILD_TYPE "Debug")
 #set(CMAKE_BUILD_TYPE "Release")
-set(MCU_FLAGS "-mcpu=cortex-m4 -mfloat-abi=soft -mfpu=fpv4-sp-d16")
+set(MCU_FLAGS "-mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wa,-mimplicit-it=thumb")
 set(CMAKE_C_FLAGS "${MCU_FLAGS} -w -Wno-unknown-pragmas -std=c99")
 set(CMAKE_C_FLAGS_DEBUG "-O0 -g2 -ggdb")
 set(CMAKE_C_FLAGS_RELEASE "-O3")
@@ -27,10 +27,11 @@ set(OPENOCD_FLASH_START 0x08000000)
 set(CHIP stm32)
 # STM32 CHIP TYPE
 set(CHIP_TYPE STM32F4xx)
+
 # STM32 HALLIB CHIP TYPE
 set(CHIP_HAL_TYPE STM32F407xx)
-
 set(DCHIP_HAL_TYPE -D${CHIP_HAL_TYPE})
+
 # STM32 HAL define
 add_definitions(
     -DUSE_HAL_DRIVER

@@ -1,6 +1,7 @@
 #include "stdio.h"
 #include "stm32_hal_init.h"
 #include "stm32f4xx_hal.h"
+#include "rtthread.h"
 
 #define LCTStatus_ERROR_LED         GPIOE, GPIO_PIN_2
 #define LCTStatus_RUNNING_LED       GPIOE, GPIO_PIN_3
@@ -8,8 +9,6 @@
 int main(void)
 {
     GPIO_InitTypeDef GPIO_InitStruct = {0};
-
-    stm32_hal_init();
 
     __HAL_RCC_GPIOE_CLK_ENABLE();
 
@@ -21,9 +20,9 @@ int main(void)
 
     while(1)
     {
-        HAL_Delay(500);
+        rt_thread_mdelay(500);
         HAL_GPIO_WritePin(LCTStatus_RUNNING_LED, GPIO_PIN_SET);
-        HAL_Delay(500);
+        rt_thread_mdelay(500);
         HAL_GPIO_WritePin(LCTStatus_RUNNING_LED, GPIO_PIN_RESET);
     }
 
