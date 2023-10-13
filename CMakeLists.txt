@@ -16,9 +16,10 @@ message(STATUS "CMAKE_HOME_DIRECTORY=${CMAKE_HOME_DIRECTORY}")
 message(STATUS "PROJECT_SOURCE_DIR=${PROJECT_SOURCE_DIR}")
 
 add_custom_target( 
-  menuconfig
-  python3 ../scripts/menuconfig.py ../board/${BOARD}/Kmenuconfig
-  USES_TERMINAL
+    menuconfig
+    python3 ../scripts/kconfig.py ../Kmenuconfig .config config.h
+    
+    USES_TERMINAL
 )
 
 add_custom_target( 
@@ -29,6 +30,7 @@ add_custom_target(
 
 include_directories(
     ./board/${BOARD}
+    ./build/config.h
 )
 
 add_subdirectory(board)

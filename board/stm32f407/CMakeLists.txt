@@ -1,6 +1,7 @@
 
 aux_source_directory(./ BOARD_SRC)
 aux_source_directory(./rtthread BOARD_SRC)
+aux_source_directory(./Src BOARD_SRC)
 
 set_property(SOURCE ./startup_stm32f407xx.s PROPERTY LANGUAGE C)
 
@@ -16,4 +17,5 @@ target_link_libraries(board
 
 target_include_directories(board PUBLIC 
     ./rtthread
+    ./rtthread/Inc
 )

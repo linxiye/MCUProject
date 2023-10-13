@@ -1,0 +1,20 @@
+mainmenu "MCU Project Build Kconfig configuration"
+
+menu "RTOS"
+
+choice RTOS
+	bool "rtos choice"
+
+config NO_RTOS
+	bool "NO"
+
+config RT_THREAD
+	bool "rt-thread"
+
+config FREERTOS
+	bool "FreeRTOS"
+
+endchoice
+
+endmenu
+
